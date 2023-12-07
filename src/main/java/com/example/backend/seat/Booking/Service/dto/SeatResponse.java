@@ -1,8 +1,11 @@
 package com.example.backend.seat.Booking.Service.dto;
-import com.example.backend.seat.Booking.Service.model.SeatPricing;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+//@AllArgsConstructor
+@NoArgsConstructor
 public class SeatResponse {
     private Long id;
     private String seatClass;
@@ -14,14 +17,19 @@ public class SeatResponse {
         this.seatClass = seatClass;
         this.booked = booked;
     }
-
-    public SeatResponse(Long id, String seatClass, boolean booked, double seatPricing) {
+    public SeatResponse(Long id, String seatClass, boolean booked, double currentPrice) {
         this.id = id;
         this.seatClass = seatClass;
         this.booked = booked;
-        this.currentPrice = seatPricing>=30 ? seatPricing : 100.0; // Set a default value
+        this.currentPrice = currentPrice;
     }
 
-    public SeatResponse(Long id, String seatClass, boolean booked, SeatPricing seatPricing) {
+
+    public SeatResponse(Long id, String seatClass, boolean booked, String hallIsEmpty) {
     }
+
+    public SeatResponse(Long id, String seatClass, String yourPricingInfoHere) {
+    }
+
+
 }

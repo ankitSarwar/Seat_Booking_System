@@ -18,11 +18,14 @@ public interface SeatRepository  extends JpaRepository<Seat, Long> {
     Optional<Seat> findById(Long seatId);
 
 
-    static long countBySeatClass(String seatClass) {
-        return 0;
-    }
+     long countBySeatClass(String seatClass);
 
-//    List<Seat> getAvailableSeats();
+//     int countBySeatClass(String seatClass);
 
     long countBookedSeatsBySeatClass(String seatClass);
+
+    List<Seat> findAllByOrderBySeatClass();
+//    findAllByOrderBySeatClassAsc();
+
+
 }

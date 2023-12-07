@@ -41,4 +41,5 @@ public class Booking {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Double totalAmount;
 
+
 }

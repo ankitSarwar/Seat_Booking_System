@@ -3,6 +3,7 @@ package com.example.backend.seat.Booking.Service.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,17 +22,16 @@ public class Seat {
     private Long id;
 
     @NotBlank(message = "Seat class cannot be blank")
+    @Pattern(regexp = "[A-J]", message = "Seat class must be a single character from A to J")
     private String seatClass;
 
-    private boolean booked;
+    private String seat_identifier;
 
-    @ManyToOne
-    @JoinColumn(name = "seat_pricing_id")
-    private SeatPricing seatPricing;
+    private boolean booked=false;
 
-    private static int availableSeats = 500;
 
-//    private int availableSeats;
+    private static int availableSeats = 100;
+
 
     public static int getAvailableSeats() {
         return availableSeats;

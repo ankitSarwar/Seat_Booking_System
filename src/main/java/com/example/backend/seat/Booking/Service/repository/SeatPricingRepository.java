@@ -9,8 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface SeatPricingRepository extends JpaRepository<SeatPricing, Long> {
-        static Optional<SeatPricing> findBySeatClass(String seatClass) {
-        return null;
-    }
 
+    Optional<SeatPricing> findBySeatClass(String seatClass);
 }

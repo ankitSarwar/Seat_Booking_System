@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookingResponse {
-    private Long bookingId;
-    private double totalAmount;
+public class SeatWithPricingResponse {
+    private Long id;
+    private String seatClass;
+    private boolean booked;
+    private double currentPrice;
+
 
 }
