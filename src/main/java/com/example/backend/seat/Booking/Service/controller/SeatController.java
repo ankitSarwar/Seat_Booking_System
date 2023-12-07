@@ -59,10 +59,10 @@ public class SeatController {
 
             double currentPrice = bookingService.calculateCurrentPrice(seatClass, bookedSeats);
 
-//            SeatWithPricingResponse response = new SeatWithPricingResponse(seat.getId(), seat.getSeatClass(),
-//                    seat.isBooked(), currentPrice);
+            SeatWithPricingResponse response = new SeatWithPricingResponse(seat.getId(), seat.getSeatClass(),
+                    seat.isBooked(), currentPrice);
 
-            SeatWithPricingResponse response = new SeatWithPricingResponse(seat.getId(), seat.getSeatClass(),  currentPrice);
+//            SeatWithPricingResponse response = new SeatWithPricingResponse(seat.getId(), seat.getSeatClass(),  currentPrice);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

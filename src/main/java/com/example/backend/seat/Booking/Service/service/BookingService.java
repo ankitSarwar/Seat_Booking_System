@@ -102,6 +102,7 @@ public class BookingService {
 
             double currentPrice = calculateCurrentPrice(assignedSeat.getSeatClass(),
                     seatRepository.countBySeatClass(assignedSeat.getSeatClass()));
+
             totalAmount += currentPrice;
 
             seat.setId(seatId);
@@ -135,33 +136,31 @@ public class BookingService {
 
 
     public double calculateCurrentPrice(String seatClass, long bookedSeats) {
-        // Implement dynamic pricing logic based on booked seats percentage
-        // This could involve using the SeatPricing information
+        Optional<SeatPricing> pricingOptional = getPricingBySeatClass(seatClass);
+        double price = 0;
 
-        long totalSeats = seatRepository.countBySeatClass(seatClass);
+        if (pricingOptional.isPresent()) {
+            SeatPricing pricing = pricingOptional.get();
 
-        Optional<SeatPricing> seatPricing = seatPricingRepository.findBySeatClass(seatClass);
 
-        if (!seatPricing.isPresent()) {
-            // Handle missing pricing information
-            return 397; // default to normal price if any seat is not booked
+            if (bookedSeats < 40) {
+                price= pricing.getMinPrice();
+            } else if (bookedSeats <= 60) {
+                price= pricing.getNormalPrice();
+            } else {
+                price =pricing.getMaxPrice();
+            }
         }
-
-        SeatPricing pricing = seatPricing.get();
-        double percentageBooked = (double) bookedSeats / totalSeats * 100;
-
-        if (percentageBooked < 40) {
-            return  pricing.getMinPrice() ; // use min_price or default to normal price
-        } else if (percentageBooked >= 40 && percentageBooked < 60) {
-            return  pricing.getNormalPrice() ; // use normal_price or default to normal price
-        } else {
-            return pricing.getMaxPrice() != 0.0 ? pricing.getMaxPrice() :
-                    (pricing.getNormalPrice() != 0.0 ? pricing.getNormalPrice() : 397);
-            // use max_price, normal_price or default to normal price
+        if(price ==0){
+            return pricingOptional.get().getNormalPrice();
         }
-
-
+        return price; // Handle the case where pricing is not available
     }
+
+    public Optional<SeatPricing> getPricingBySeatClass(String seatClass) {
+        return seatPricingRepository.findBySeatClass(seatClass);
+    }
+
 
 
 
@@ -211,7 +210,7 @@ public class BookingService {
             currentPrice = seatPricing.get().getMaxPrice();
         }
 
-        return new SeatResponse(seat.getId(), seatClass, seat.isBooked(), currentPrice);
+        return new SeatResponse(seat.getId(), seatClass, seat.isBooked());
 //        return new SeatResponse(seat.getId(), seatClass, String.valueOf(currentPrice));
     }
 

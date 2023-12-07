@@ -26,7 +26,7 @@ public class SeatPricing {
 
     private double minPrice;
 
-    private double normalPrice;
+    private double normalPrice =397.61;
 
     private double maxPrice;
 
