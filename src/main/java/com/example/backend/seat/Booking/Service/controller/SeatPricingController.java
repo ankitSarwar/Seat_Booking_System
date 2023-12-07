@@ -20,10 +20,10 @@ public class SeatPricingController {
     private SeatPricingRepository seatPricingRepository;
 
 
-    @PostMapping("/bulk-create")
-    public ResponseEntity<List<SeatPricing>> createSeatPricings(@RequestBody List<SeatPricing> seatPricings) {
-        List<SeatPricing> savedPricings = seatPricingRepository.saveAll(seatPricings);
-        return new ResponseEntity<>(savedPricings, HttpStatus.CREATED);
-    }
+//    @PostMapping("/bulk-create")
+//    public ResponseEntity<List<SeatPricing>> createSeatPricings(@RequestBody List<SeatPricing> seatPricings) {
+//        List<SeatPricing> savedPricings = seatPricingRepository.saveAll(seatPricings);
+//        return new ResponseEntity<>(savedPricings, HttpStatus.CREATED);
+//    }
 }
 
