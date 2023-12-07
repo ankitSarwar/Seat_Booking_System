@@ -14,4 +14,6 @@ public class SeatWithPricingResponse {
     private double currentPrice;
 
 
+    public SeatWithPricingResponse(Long id, String seatClass, double currentPrice) {
+    }
 }

@@ -32,17 +32,3 @@ public class SeatPricing {
 
 
 }
-//{
-//        "id": 1,
-//        "seatClass": "A",
-//        "minPrice": 0,
-//        "maxPrice": 547.20,
-//        "normalPrice": 397.61
-//        },
-//        {
-//        "id": 2,
-//        "seatClass": "B",
-//        "minPrice": 183.44,
-//        "maxPrice": 766.96,
-//        "normalPrice": 441.65
-//        },

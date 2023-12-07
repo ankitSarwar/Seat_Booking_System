@@ -32,4 +32,6 @@ public class SeatResponse {
     }
 
 
+    public SeatResponse(Long id, String seatClass) {
+    }
 }

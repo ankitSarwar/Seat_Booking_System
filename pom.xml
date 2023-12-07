@@ -58,7 +58,7 @@
 		</dependency>
 
 
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;-->
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 <!--		<dependency>-->
 <!--			<groupId>io.springfox</groupId>-->
 <!--			<artifactId>springfox-swagger-ui</artifactId>-->

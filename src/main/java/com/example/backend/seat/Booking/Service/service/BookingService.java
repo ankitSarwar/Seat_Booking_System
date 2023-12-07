@@ -57,8 +57,11 @@ public class BookingService {
         }
 
         return seats.stream()
-                .map(seat -> new SeatResponse(seat.getId(), seat.getSeatClass(), seat.isBooked(), "yourPricingInfoHere"))
+                .map(seat -> new SeatResponse(seat.getId(), seat.getSeatClass(), seat.isBooked()))
                 .collect(Collectors.toList());
+//        return seats.stream()
+//                .map(seat -> new SeatResponse(seat.getId(), seat.getSeatClass()))
+//                .collect(Collectors.toList());
     }
 
 
@@ -208,8 +211,8 @@ public class BookingService {
             currentPrice = seatPricing.get().getMaxPrice();
         }
 
-//        return new SeatResponse(seat.getId(), seatClass, seat.isBooked(), currentPrice);
-        return new SeatResponse(seat.getId(), seatClass, String.valueOf(currentPrice));
+        return new SeatResponse(seat.getId(), seatClass, seat.isBooked(), currentPrice);
+//        return new SeatResponse(seat.getId(), seatClass, String.valueOf(currentPrice));
     }
 
 }
