@@ -82,8 +82,6 @@ public class BookingService {
         BookingResponse response = new BookingResponse();
 
         Booking booking = new Booking();
-        booking.setUserName(userName);
-        booking.setPhoneNumber(phoneNumber);
 
 
         for (Long seatId : seatIds) {
@@ -112,13 +110,31 @@ public class BookingService {
 //            seat.setCurrentPricing(currentPrice);
 
             seatRepository.save(seat);
+
+            Set<Seat> bookedSeats = seatIds.stream()
+                    .map(seatIdd -> seatRepository.findById(seatIdd)
+                            .orElseGet(() -> {
+                                Seat newSeat = new Seat(); // Create a new seat if not found
+                                newSeat.setId(seatIdd); // Set the seat ID
+                                return newSeat;
+                            }))
+                    .collect(Collectors.toSet());
+
+            booking.setSeats(bookedSeats);
         }
+
+
+        booking.setUserName(userName);
+
+        booking.setPhoneNumber(phoneNumber);
+        booking.setTotalAmount(totalAmount);
         bookingRepository.save(booking);
 
 
 
         response.setBookingId(booking.getId());
         response.setTotalAmount(totalAmount);
+
         return response;
     }
 
